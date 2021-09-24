@@ -7,7 +7,7 @@
 
     <variable name="default.http.port" defaultValue="9080"/>
     <variable name="default.https.port" defaultValue="9443"/>
-    <variable name="app.context.root" defaultValue="FIT"/>
+    <variable name="app.context.root" defaultValue="/"/>
 
     <!-- Datasource Configuration -->
     <!-- tag::data-source[] -->
