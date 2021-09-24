@@ -14,5 +14,5 @@
 
     <httpEndpoint httpPort="${default.http.port}"
                   httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
-    <webApplication id="FIT" location="FIT.war" contextRoot="${app.context.root}" />
+    <webApplication id="FIT" location="FIT.war" contextRoot="/" />
 </server>
