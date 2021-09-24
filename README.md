@@ -19,4 +19,4 @@ mvn liberty:run
 ```
 
 3. Die Server ist nun bereit für Programmierung mit Jakarta EE 9.
-   Unter [http://localhost:9080/FIT/](http://localhost:9080/FIT/) kann die Anwendung aufgerufen werden.
+   Unter [http://localhost:9080/FIT/](http://localhost:9080/) kann die Anwendung aufgerufen werden.
