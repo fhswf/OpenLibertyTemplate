@@ -18,5 +18,5 @@ mvn liberty:run
 [INFO] [AUDIT   ] CWWKF0011I: Der Server defaultServer ist für die Ausführung von Smarter Planet bereit. Der Server defaultServer ist nach 8,605 Sekunden gestartet.
 ```
 
-3. Die Server ist nun bereit für Programmierung mit Jakarta EE 9.
+3. Die Server ist nun bereit für die Programmierung mit Jakarta EE 9.
    Unter [http://localhost:9080/](http://localhost:9080/) kann die Anwendung aufgerufen werden.
