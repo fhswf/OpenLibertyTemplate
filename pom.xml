@@ -75,10 +75,12 @@
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
                 <version>3.3.4</version>
-                <extensions>true</extensions>
+		        <extensions>true</extensions>
                 <configuration>
-                    <installDirectory>{Pfad zum WLP Ordner der Open Liberty Installation}</installDirectory>
-                </configuration>
+                    <install>
+                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-08-24_2341/openliberty-jakartaee9-21.0.0.10-beta.zip</runtimeUrl>
+                    </install>
+			    </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
