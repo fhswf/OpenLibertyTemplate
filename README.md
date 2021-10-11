@@ -9,7 +9,7 @@ Eine Installation von Maven wird vorausgesetzt (getestet mit Maven 3).
 1. Download und Starten des Open Liberty Servers über Maven:
 
 ```shell
-mvn liberty:run
+mvn liberty:dev
 ```
 
 2. Wenn der Server gestartet ist, sollte folgende Meldung auf der Konsole erscheinen:
