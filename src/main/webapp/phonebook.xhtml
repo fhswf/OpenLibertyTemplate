@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://java.sun.com/jsf/core">
+<h:head></h:head>
+<h:body>
+    <h2>Phone Book</h2>
+    <h:form id="form">
+        <p:growl id="msgs" showDetail="true" />
+
+        <p:dataTable id="table" value="#{phoneBook.persons}" var="person" editable="true" editMode="cell">
+            <p:ajax event="cellEdit" listener="#{phoneBook.onCellEdit}" update=":form:msgs" />
+            <p:column headerText="Name" sortOrder="asc" sortPriority="1">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.name}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.name}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+            <p:column headerText="Phone Number">
+                <p:cellEditor>
+                    <f:facet name="output">
+                        <h:outputText value="#{person.phoneNumber}" />
+                    </f:facet>
+                    <f:facet name="input">
+                        <p:inputText value="#{person.phoneNumber}" />
+                    </f:facet>
+                </p:cellEditor>
+            </p:column>
+        </p:dataTable>
+        <p:commandButton actionListener="#{phoneBook.newEntry}" value="New" update="table" ajax="true" />
+    </h:form>
+</h:body>
+
+</html>

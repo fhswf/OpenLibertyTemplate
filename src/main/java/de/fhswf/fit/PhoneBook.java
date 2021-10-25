@@ -5,10 +5,15 @@ import java.util.List;
 import java.util.ArrayList;
 
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 
+import org.primefaces.event.CellEditEvent;
+
 @Named("phoneBook")
-@SessionScoped
+@ViewScoped
 public class PhoneBook implements Serializable {
     public static class Person {
         private String name;
@@ -23,8 +28,17 @@ public class PhoneBook implements Serializable {
             return name;
         }
 
+        public void setName(String name) {
+            this.name = name;
+        }
+
         public String getPhoneNumber() {
             return phoneNumber;
+        }
+
+        public void setPhoneNumber(String phoneNumber) {
+            System.out.println("Setter for " + this.name + ", setPhoneNumber: " + phoneNumber);
+            this.phoneNumber = phoneNumber;
         }
     }
 
@@ -39,6 +53,17 @@ public class PhoneBook implements Serializable {
         return persons;
     }
 
+    public void onCellEdit(CellEditEvent event) {
+        String oldValue = event.getOldValue().toString();
+        String newValue = event.getNewValue().toString();
+        System.out.println("onEdit: " + oldValue + " -> " + newValue);
+        if (newValue != null && !newValue.equals(oldValue)) {
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed",
+                    "Old: " + oldValue + ", New:" + newValue);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+    }
+
     public void addPerson(String name, String phoneNumber) {
         persons.add(new Person(name, phoneNumber));
     }
@@ -51,7 +76,12 @@ public class PhoneBook implements Serializable {
         }
     }
 
+    public void newEntry() {
+        persons.add(new Person("", ""));
+    }
+
     public void removePerson(String name) {
-       persons = persons.stream().filter(person -> !person.getName().equals(name)).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        persons = persons.stream().filter(person -> !person.getName().equals(name)).collect(ArrayList::new,
+                ArrayList::add, ArrayList::addAll);
     }
 }
