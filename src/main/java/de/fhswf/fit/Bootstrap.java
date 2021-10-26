@@ -32,8 +32,8 @@ public class Bootstrap {
                     .forEach(person -> System.out.println(" person saved: " + person));
         } else {
             for (Person p : persons) {
-                System.out.println(" person found: " + p.getName());
+                System.out.println(" person found: " + p);
             }
         }
-    } 
+    }
 }
