@@ -20,3 +20,8 @@ mvn liberty:dev
 
 3. Die Server ist nun bereit für Programmierung mit Jakarta EE 9.
    Unter [http://localhost:9080/](http://localhost:9080/) kann die Anwendung aufgerufen werden.
+
+## JPA mit Derby
+
+Die `pom.xml` und die `server.xml` beinhalten eine minimale Konfiguration zur Nutzung von [JPA](https://jakarta.ee/specifications/persistence/3.0/) 
+mit [Derby](http://db.apache.org/derby/). Damit können Sie ohne externe Datenbank Daten persistieren.
