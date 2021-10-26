@@ -15,4 +15,16 @@
     <httpEndpoint httpPort="${default.http.port}"
                   httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
     <webApplication id="FIT" location="FIT.war" contextRoot="/" />
+
+    <!-- Derby Library Configuration -->
+    <library id="derbyJDBCLib">
+      <fileset dir="${shared.resource.dir}/" includes="derby*.jar" />
+    </library>
+
+
+    <!-- Datasource Configuration -->
+    <dataSource id="DefaultDataSource">
+      <jdbcDriver libraryRef="derbyJDBCLib" />
+      <properties.derby.embedded databaseName="PhoneDB" createDatabase="create" />
+    </dataSource>
 </server>
