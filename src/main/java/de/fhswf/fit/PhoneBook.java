@@ -4,35 +4,30 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Inject;
 import jakarta.inject.Named;
 
 @Named("phoneBook")
 @SessionScoped
 public class PhoneBook implements Serializable {
-    public static class Person {
-        private String name;
-        private String phoneNumber;
 
-        public Person(String name, String phoneNumber) {
-            this.name = name;
-            this.phoneNumber = phoneNumber;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getPhoneNumber() {
-            return phoneNumber;
-        }
-    }
+    transient PhoneBookStore phoneBookStore;
 
     private List<Person> persons = new ArrayList<Person>();
 
     public PhoneBook() {
-        persons.add(new Person("John Doe", "123456789"));
-        persons.add(new Person("Jane Doe", "987654321"));
+    }
+
+    @Inject
+    @Named("phoneBookStore")
+    public void setPhoneBookStore(PhoneBookStore phoneBookStore) {
+        this.phoneBookStore = phoneBookStore;
+        System.out.println("initializing PhoneBook");
+
+        List<Person> persons = this.phoneBookStore.getAll();
+        this.persons.addAll(persons);
     }
 
     public List<Person> getPersons() {
@@ -46,12 +41,13 @@ public class PhoneBook implements Serializable {
     public void savePerson(String name, String phoneNumber) {
         for (Person person : persons) {
             if (person.getName().equals(name)) {
-                person.phoneNumber = phoneNumber;
+                person.setPhoneNumber(phoneNumber);
             }
         }
     }
 
     public void removePerson(String name) {
-       persons = persons.stream().filter(person -> !person.getName().equals(name)).collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
+        persons = persons.stream().filter(person -> !person.getName().equals(name)).collect(ArrayList::new,
+                ArrayList::add, ArrayList::addAll);
     }
 }
