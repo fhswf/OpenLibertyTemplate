@@ -28,12 +28,12 @@ public class Bootstrap {
                 person.setName(s);
 
                 return person;
-            }).map(data -> phoneBookStore.addPerson(data)).collect(Collectors.toList())
+            }).map(data -> phoneBookStore.add(data)).collect(Collectors.toList())
                     .forEach(person -> System.out.println(" person saved: " + person));
         } else {
             for (Person p : persons) {
                 System.out.println(" person found: " + p.getName());
             }
         }
-    }
+    } 
 }

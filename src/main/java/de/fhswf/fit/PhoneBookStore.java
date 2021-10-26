@@ -14,7 +14,6 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
 @PersistenceUnit
-@Named("phoneBookStore")
 @Stateless
 public class PhoneBookStore {
 
@@ -35,8 +34,17 @@ public class PhoneBookStore {
         return p;
     }
 
-    public Person addPerson(Person p) {
+    public Person add(Person p) {
         em.persist(p);
         return p;
+    }
+
+    public Person update(Person p) {
+        em.merge(p);
+        return p;
+    }
+
+    public void delete(Person p) {
+        em.remove(p);
     }
 }
