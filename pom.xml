@@ -80,6 +80,14 @@
                     <install>
                         <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-08-24_2341/openliberty-jakartaee9-21.0.0.10-beta.zip</runtimeUrl>
                     </install>
+                    <copyDependencies>
+                        <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
+                        <dependency>
+                            <groupId>org.apache.derby</groupId>
+                            <artifactId>derby</artifactId>
+                            <version>10.14.2.0</version>
+                        </dependency>
+                    </copyDependencies>
 			    </configuration>
             </plugin>
             <plugin>
