@@ -1,8 +1,7 @@
-package de;
+package de.fhswf.fit;
 
 import java.io.IOException;
 
-import de.fhswf.fit.PhoneBook;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
