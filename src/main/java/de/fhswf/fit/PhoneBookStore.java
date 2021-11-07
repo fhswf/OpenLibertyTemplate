@@ -47,4 +47,8 @@ public class PhoneBookStore {
     public void delete(Person p) {
         em.remove(p);
     }
+
+    public void delete(String name) {
+        em.remove(em.find(Person.class, name));
+    }
 }
