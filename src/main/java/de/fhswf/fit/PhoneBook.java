@@ -2,6 +2,7 @@ package de.fhswf.fit;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import java.util.ArrayList;
 
 import jakarta.enterprise.context.ApplicationScoped;
@@ -16,6 +17,8 @@ import jakarta.inject.Inject;
 @SessionScoped
 public class PhoneBook implements Serializable {
 
+    private transient final Logger LOGGER = Logger.getLogger(PhoneBook.class.getName());
+
     transient PhoneBookStore phoneBookStore;
 
     private List<Person> persons = new ArrayList<Person>();
@@ -24,7 +27,7 @@ public class PhoneBook implements Serializable {
     }
 
     public void init() {
-        System.out.println("initializing PhoneBook");
+        LOGGER.info("initializing PhoneBook");
 
         List<Person> persons = this.phoneBookStore.getAll();
         this.persons.addAll(persons);

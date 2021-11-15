@@ -1,5 +1,7 @@
 package de.fhswf.fit;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -40,4 +42,28 @@ public class Person {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return "{" + " name='" + getName() + "'" + ", phoneNumber='" + getPhoneNumber() + "'" + "}";
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(phoneNumber, person.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phoneNumber);
+    }
+
+
 }

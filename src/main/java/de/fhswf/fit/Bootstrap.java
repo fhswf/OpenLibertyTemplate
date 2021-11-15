@@ -10,7 +10,7 @@ import jakarta.ejb.Singleton;
 import jakarta.ejb.Startup;
 import jakarta.inject.Inject;
 
-@Startup
+//@Startup
 @Singleton
 public class Bootstrap {
 
@@ -35,5 +35,5 @@ public class Bootstrap {
                 System.out.println(" person found: " + p.getName());
             }
         }
-    } 
+    }
 }
