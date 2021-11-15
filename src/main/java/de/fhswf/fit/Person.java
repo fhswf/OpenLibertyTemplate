@@ -3,8 +3,10 @@ package de.fhswf.fit;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Person {
     @Id
     @Column
