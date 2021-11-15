@@ -20,3 +20,11 @@ mvn liberty:dev
 
 3. Die Server ist nun bereit für die Programmierung mit Jakarta EE 9.
    Unter [http://localhost:9080/](http://localhost:9080/) kann die Anwendung aufgerufen werden.
+
+## Tests mit [Arquillian](https://arquillian.org)
+
+```shell
+mvn liberty:create liberty:install-feature
+mvn liberty:configure-arquillian
+mvn integration-test -Parq-libery-managed
+```

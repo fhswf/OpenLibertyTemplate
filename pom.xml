@@ -18,7 +18,48 @@
         <liberty.var.app.context.root>${project.artifactId}</liberty.var.app.context.root>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jboss.arquillian</groupId>
+                <artifactId>arquillian-bom</artifactId>
+                <version>1.6.0.Final</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
+    
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-managed-jakarta</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-remote-jakarta</artifactId>
+            <version>2.0.1</version>
+        </dependency>
+        -->
+
+        <dependency>
+            <groupId>io.openliberty.arquillian</groupId>
+            <artifactId>arquillian-liberty-managed-junit</artifactId>
+            <version>1.1.8</version>
+            <type>pom</type>
+            <scope>test</scope>
+        </dependency>
+    
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+        
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
@@ -80,10 +121,11 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
+            <version>8.0.27</version>
         </dependency>
 
     </dependencies>
+
 
     <build>
         <finalName>${project.artifactId}</finalName>
@@ -95,7 +137,7 @@
 		        <extensions>true</extensions>
                 <configuration>
                     <install>
-                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-08-24_2341/openliberty-jakartaee9-21.0.0.10-beta.zip</runtimeUrl>
+                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-10-19_1900/openliberty-21.0.0.12-beta.zip</runtimeUrl>
                     </install>
                     <copyDependencies>
                         <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
@@ -120,6 +162,7 @@
                     <systemPropertyVariables>
                         <http.port>${liberty.var.default.http.port}</http.port>
                         <war.name>${liberty.var.app.context.root}</war.name>
+                        <arquillian.launch>liberty-managed</arquillian.launch>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>

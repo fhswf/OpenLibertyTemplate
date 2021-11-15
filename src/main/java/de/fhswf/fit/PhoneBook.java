@@ -12,8 +12,6 @@ import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
 import jakarta.inject.Inject;
 
-import org.primefaces.event.CellEditEvent;
-
 @Named("phoneBook")
 @SessionScoped
 public class PhoneBook implements Serializable {
@@ -40,17 +38,6 @@ public class PhoneBook implements Serializable {
 
     public List<Person> getPersons() {
         return persons;
-    }
-
-    public void onCellEdit(CellEditEvent event) {
-        String oldValue = event.getOldValue().toString();
-        String newValue = event.getNewValue().toString();
-        System.out.println("onEdit: " + oldValue + " -> " + newValue);
-        if (newValue != null && !newValue.equals(oldValue)) {
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Cell Changed",
-                    "Old: " + oldValue + ", New:" + newValue);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-        }
     }
 
     public void addPerson(String name, String phoneNumber) {
