@@ -1,10 +1,14 @@
 package de.fhswf.fit;
 
+import java.util.Objects;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Person {
     @Id
     @Column
@@ -39,7 +43,27 @@ public class Person {
         this.phoneNumber = phoneNumber;
     }
 
+    @Override
     public String toString() {
-        return "Name: " + name + " Phone: " + phoneNumber;
+        return "{" + " name='" + getName() + "'" + ", phoneNumber='" + getPhoneNumber() + "'" + "}";
     }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Person)) {
+            return false;
+        }
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Objects.equals(phoneNumber, person.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, phoneNumber);
+    }
+
+
 }

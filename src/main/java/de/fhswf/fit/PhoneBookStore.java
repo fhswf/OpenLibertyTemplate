@@ -45,6 +45,15 @@ public class PhoneBookStore {
     }
 
     public void delete(Person p) {
+        p = em.merge(p);
         em.remove(p);
+    }
+
+    public void delete(String name) {
+        Person p = em.find(Person.class, name);
+        if (p != null) {
+            em.remove(p);
+        } else
+            throw new IllegalArgumentException("Person not found: " + name);
     }
 }
