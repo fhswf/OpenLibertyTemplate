@@ -1,7 +1,7 @@
 <server description="FIT Template Server">
     <featureManager>
         <feature>jakartaee-9.1</feature>
-        <!--<feature>usr:arquillian-support-jakarta-2.0</feature>-->
+        <feature>usr:arquillian-support-jakarta-2.0</feature>
         <feature>localConnector-1.0</feature>
     </featureManager>
 
@@ -9,12 +9,13 @@
     <variable name="default.https.port" defaultValue="9443"/>
     <variable name="app.context.root" defaultValue="/"/>
 
+    <applicationMonitor updateTrigger="mbean"/>
     <!-- Datasource Configuration -->
     <!-- tag::data-source[] -->
 
     <httpEndpoint httpPort="${default.http.port}"
                   httpsPort="${default.https.port}" id="defaultHttpEndpoint"  host="*" />
-    <webApplication id="FIT" location="FIT.war" contextRoot="/" />
+    <!-- <webApplication id="FIT" location="FIT.war" contextRoot="/" />-->
 
     <!-- Derby Library Configuration -->
     <library id="derbyJDBCLib">

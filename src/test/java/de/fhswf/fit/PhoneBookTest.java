@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
@@ -30,35 +31,26 @@ public class PhoneBookTest {
     @Inject
     PhoneBookStore phoneBook;
 
-    @PersistenceContext
-    EntityManager em;
-
     @Deployment
-    public static JavaArchive createDeployment() {
-        // return ShrinkWrap.create(WebArchive.class).addPackages(true, "de.fhswf.fit")
-        // .addAsResource("META-INF/persistence.xml").addAsManifestResource(EmptyAsset.INSTANCE,
-        // "beans.xml");
-        JavaArchive jar = ShrinkWrap.create(JavaArchive.class)
-                //
-                .addPackage(PhoneBook.class.getPackage())
-                // .addPackages(true, "de.fhswf.fit")
-                // Add JPA persistence configuration.
-                // WARN: In a jar archive, persistence.xml should be put into /META-INF
+    public static WebArchive createDeployment() {
+        final String WARNAME = System.getProperty("arquillian.war.name", "test.war");
+
+        WebArchive archive = ShrinkWrap.create(WebArchive.class, WARNAME).addPackages(true, "de.fhswf.fit")
                 .addAsResource("META-INF/persistence.xml").addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 
-        LOGGER.log(Level.INFO, "deployment unit: {0}", jar);
+        LOGGER.log(Level.INFO, "deployment unit: {0}", archive);
 
-        return jar;
+        return archive;
     }
 
     @Test
-    public void testPhoneBookInjection() {
-        assertNotNull("Test injection of PhoneBookStore", phoneBook);
+    public void dummyTest() {
+        assertTrue(true);
     }
 
     @Test
-    public void testEMInjection() {
-        assertNotNull("Test injection of EntityManager", em);
+    public void testInjection() {
+        assertNotNull(phoneBook);
     }
 
     @Test
@@ -69,5 +61,4 @@ public class PhoneBookTest {
         LOGGER.info("added: " + person + ", returned: " + newPerson);
         assertTrue("Added person should be returned by findByName()", newPerson.equals(person));
     }
-
 }
