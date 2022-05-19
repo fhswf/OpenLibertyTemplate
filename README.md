@@ -25,3 +25,17 @@ mvn liberty:dev
 
 Die `pom.xml` und die `server.xml` beinhalten eine minimale Konfiguration zur Nutzung von [JPA](https://jakarta.ee/specifications/persistence/3.0/) 
 mit [Derby](http://db.apache.org/derby/). Damit können Sie ohne externe Datenbank Daten persistieren.
+
+
+## Tests mit Arquillian
+
+[Arquillian](https://arquillian.org) ist ein Test-Framework für JEE-Anwendungen, d.h. es kann für Testzwecke eine Instanz von OpenLiberty starten,
+die Anwendung dort deployen und dann Tests ausführen.
+
+Integrationstests können wie folgt gestartet werden:
+
+```shell
+mvn liberty:create liberty:install-feature
+mvn integration-test
+```
+

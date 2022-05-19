@@ -10,8 +10,8 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
         <!-- Liberty configuration -->
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
         <liberty.var.default.https.port>9443</liberty.var.default.https.port>
@@ -26,15 +26,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>io.openliberty.beta</groupId>
-            <artifactId>openliberty-jakartaee9</artifactId>
-            <version>21.0.0.9-beta</version>
-            <type>zip</type>
-        </dependency>
-        <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>4.0.1</version>
+            <version>5.0</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
@@ -63,7 +57,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.26</version>
+            <version>8.0.29</version>
         </dependency>
 
     </dependencies>
@@ -74,12 +68,9 @@
             <plugin>
                 <groupId>io.openliberty.tools</groupId>
                 <artifactId>liberty-maven-plugin</artifactId>
-                <version>3.3.4</version>
+                <version>3.5.1</version>
 		        <extensions>true</extensions>
                 <configuration>
-                    <install>
-                        <runtimeUrl>https://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/beta/2021-08-24_2341/openliberty-jakartaee9-21.0.0.10-beta.zip</runtimeUrl>
-                    </install>
                     <copyDependencies>
                         <location>${project.build.directory}/liberty/wlp/usr/shared/resources</location>
                         <dependency>
@@ -93,7 +84,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.3.1</version>
+                <version>3.3.2</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -109,7 +100,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
-                <version>3.1.2</version>
+                <version>3.3.0</version>
                 <executions>
                     <execution>
                         <goals>
